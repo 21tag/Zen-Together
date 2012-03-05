@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+
+    <title>ZenTogether</title>
+    
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css" type="text/css" />
+    <!--[if lte IE 7]><link rel="stylesheet" href="css/ie.css" type="text/css" /><![endif]-->
+    
+    
+    <link rel="icon" href="{{ STATIC_URL }}favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="{{ STATIC_URL }}favicon.png" type="image/png" />
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+
+    
+</head>
+
+<body>
+
+
+<div class="box signUp">
+<h1 class="alignCenter">Alas!</h1>
+    <img src="{{ STATIC_URL }}images/fleuron-large-brown.png" alt="" class="divider" />
+    <br/><br/>
+    <p class="alignCenter">The resource you seek is not here</p>
+
+</div>
+
+<div class="container" id="navigation">
+	{% block nav %}
+    <a href="/accounts/login/" class="btn btn-sign"><img src="{{ STATIC_URL }}images/icon-profile.png" alt="" class="floatLeft" /><span>Sign Up<small>&mdash; or &mdash;</small>Sign In</span></a>
+        <a href="/zen" class="btn btn-start"><img src="{{ STATIC_URL }}images/icon-start.png" alt="" class="floatLeft" />Start</a>
+        <a href="/about/" class="btn btn-how"><img src="{{ STATIC_URL }}images/icon-how.png" alt="" class="floatLeft" />How to play</a>
+    {% endblock %}
+</div>
+</body>
+
+
+
+
+</html>

@@ -1,0 +1,106 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load account_tags %}
+
+{% block scripts %}
+<script type="text/javascript">
+function loginInit(){
+    mpq.track("\/accounts\/login fb init");
+}
+function loginComplete(){
+    mpq.track("\/accounts\/login fb complete");
+}
+function save() {
+        pref = document.getElementById("fbStreamCheck").checked;
+        $.get("/zen/savePrefs/", {"fbStream" : pref  } );
+}
+</script>
+{% endblock %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block body %}
+    
+    <h1 class="alignCenter">{% trans "Sign In" %}</h1>
+    <img src="{{ STATIC_URL }}images/fleuron-large-brown.png" alt="" class="divider" />
+    <br/><br/>
+
+    {% if not user.is_authenticated %}
+
+    {% if allauth.socialaccount_enabled  %}
+    
+    <div class="socialaccount_ballot">
+
+    {% include "socialaccount/snippets/provider_list.html" %}
+    <br/><br/>
+    <p class="alignCenter"><em>&mdash; or &mdash;</em><br/><br/>Sign in with your Zen Together account.<br/> Need one? <a href="{{ signup_url }}" onClick="loginInit();">Sign up.</a>
+
+    </div>
+
+    {% include "socialaccount/snippets/login_extra.html" %}
+
+    {% endif %}
+
+        <form class="alignCenter" method="POST" action="{% url account_login %}">
+            {% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ form|as_uni_form }}
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <div class="buttonHolder">
+                    <a class="button secondaryAction" href="{% url account_reset_password %}">{% trans "Forgot Password?" %}</a><br>
+
+                    <input class="btn-submit" style="margin-left:190px" type="submit" value="Sign In" %}>
+                </div>
+            </fieldset>
+        </form>
+    {% else %}
+    <script>loginComplete();</script>
+    {% user_display user as user_display %}
+    {% if request.user.first_name %} 
+    <h2 class="alignCenter">Welcome {{ first_name }}! <a href="{% url account_logout %}">Log out.</a></h2>
+    {% else %}
+    <h2 class="alignCenter">Welcome {{ user_display }}! <a href="{% url account_logout %}">Log out.</a></h2>
+    {% endif %}
+    <br/>
+    <div style="margin-left:auto; margin-right:auto; text-align:center;">
+        <div style="display:inline-block; padding:5px; text-align:center;">
+        <h1 style"color:#fff; padding:0px;">{{ karmaPts }}</h1>
+        <h2 style"padding:0px;">Karma Points</h2>
+        </div>
+        <div style="display:inline-block; padding:5px; text-align:center;">
+        <h1 style"padding:0px;">{% if hasZenned %} {{ lastZenDate }} {% else %} Never {% endif %}</h1>
+        <h2 style"padding:0px;">Last Meditation</h2>
+        </div>
+        <div style="display:inline-block; padding:5px; text-align:center;">
+        <h1 style"padding:0px;">{{ numZen }}</h1>
+        <h2 style"padding:0px;">Total Meditations</h2>
+        </div>
+        {% if fbStreamPerm %}
+                <h2 class="alignCenter" style="font-family:PlantinStdSemibold;">Preferences</h2>
+                {% if fbStream %}
+                <input type="checkbox" id="fbStreamCheck" checked="checked" onclick="save();"/>Publish my meditations on 
+                facebook
+                {% else %}
+                <input type="checkbox" id="fbStreamCheck" onclick="save();"/>Publish my meditations on 
+                facebook
+                {% endif %}
+        {% endif %}
+    </div>
+
+    {% endif %}
+
+{% endblock %}
+
+{% block booty %}
+
+{% if request.user.first_name %} 
+    <script type="text/javascript">mpq.name_tag('{{ first_name }}');</script>
+    {% else %}
+    <script type="text/javascript">mpq.name_tag('{{ user_display }}');</script>
+    {% endif %}
+{% endblock %}
+

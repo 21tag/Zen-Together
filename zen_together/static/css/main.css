@@ -1,0 +1,272 @@
+/*   
+
+MAIN.CSS
+Contains:    Basic Template, Layout, and Typography
+For:         ZenTogether
+By:          Joey @ Goose Rock Design : gooserockdesign.com
+             joey@gooserockdesign.com
+Created:     05/29/11 Joey
+
+*/
+
+@import 'reset.css';
+@import 'plantin.css';
+@import 'dayroman.css';
+
+
+/* -----  HTML & Body  ----- */
+html {font-size:100.01%; height: 100%;}
+body { 
+    height:100%;
+    font-family:DayRomanRegular,Georgia,'Times New Roman',serif;
+    font-size:13px;
+    background:#000 url('../images/background1.jpg') no-repeat 0 0;
+    color:#695450;}
+    
+/* -- Floating Boxen -- */
+.box,
+.container { position:relative; margin:0 auto; }
+
+.box { 
+    position:relative;
+    margin:100px auto 0;
+    background:transparent url('../images/bg-box2.png') repeat;
+    padding:20px;
+    width:524px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0px 0px 5px #000;
+    -webkit-box-shadow: 0px 0px 5px #000;
+    box-shadow: 0px 0px 5px #000;
+    z-index:999;}
+    .box .divider { display:block; margin:0 auto; }
+    .box p,
+    .box li {
+        font-size:15px;
+        line-height:22px;
+        margin-bottom:16px; }
+        .box p em,
+        .box li em,
+        .box p i,
+        .box li i{ font-style:italic; }
+    .box ul { list-style-type:none; margin:0; padding:0; }
+    .box ul li { list-style-type:disc; }
+    .box p a,
+    .box li a { color:#695450; text-decoration:underline; }
+    .box p a:hover,
+    .box li a:hover { text-decoration:none; }
+    .box img.floatLeft,
+    .box img.floatRight { border:1px solid #9a9a9a; }
+    .box img.floatLeft { margin:0 15px 0 0; }
+    .box img.floatRight { margin:0 0 0 15px; }
+    
+    /* -- Columns -- */
+    .box .leftColumn,
+    .box .rightColumn {
+        display:inline-block;   /* IE[display:inline] */
+        vertical-align:top; 
+        position:relative; 
+        width:307px; }
+
+/* -- Meditation in Progress box -- */
+.box.meditating { padding-top:50px; }
+
+/* -- Sign up/Sign in box -- */
+.box.signup { width:620px; }
+
+/* -- Brown Counter box -- */
+.box.brown { 
+    width:240px;
+    height:71px;
+    padding:0;
+    text-align:center;
+    background:transparent url('../images/bg-box-brown.png') repeat-x bottom;
+    -webkit-border-bottom-right-radius: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    -moz-border-radius-bottomright: 7px;
+    -moz-border-radius-bottomleft: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    -webkit-border-top-left-radius: 0px;
+    -webkit-border-top-right-radius: 0px;
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    margin:0 auto;
+    -moz-box-shadow: 0px 0px 5px #000;
+    -webkit-box-shadow: 0px 0px 5px #000;
+    box-shadow: 0px 0px 5px #000;
+    z-index:1;}
+.box.brown.marginFix { margin-top:-9px; }
+    .box.brown.marginFix .divider { padding-top:6px; }
+.box.brown.timer { width:174px; font-family:PlantinStdSemibold; }
+    .box.brown h3 {
+        font-size:24px;
+        font-weight:bold;
+        color:#cdcdcd;
+        text-shadow:1px 1px 0 #222;
+        text-shadow:1px 1px 0 rgba(0,0,0,0.5);
+        line-height:36px; }
+    .box.brown.timer h3 { font-size:32px; line-height:50px;padding-top:11px;}
+        .box.brown h3 small {
+            display:block;
+            font-weight:normal;
+            font-size:12px;
+            font-family:PlantinStdRegular,Georgia,Arial,sans-serif;
+            line-height:20px; }
+
+/* -- Initial Box -- */
+.box.initial { 
+    text-align:center;
+    padding:50px 0 0;
+    height:146px;
+    width:564px;
+    z-index:999;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background:transparent url('../images/bg-box-initial.png') no-repeat 0 0; }
+    
+/* -- General Box Typography -- */    
+.box h2 {
+    font-size:17px;
+    line-height:25px;
+    padding-top:5px;
+    color:#2f292a;}
+.box h1 {
+    position:relative;
+    font-size:32px;
+    line-height:40px; 
+    padding:0 0 20px 0;
+    color:#2f292a;
+    font-weight:bold;}
+    .box h1 img { position:relative; top:5px; margin:0px 15px 0 0; }
+    
+/* -- Button Containers & Buttons -- */
+#navigation,#buttons {
+    position:relative;
+    width:595px;
+    margin:42px auto 30px auto; }
+#buttons.single { width:200px; }
+#buttons.double { width:480px; }
+    
+a.btn,input.btn-submit{
+    display:block;
+    float:left;
+    width:154px;
+    font-weight:bold;
+    margin:0 20px 0 22px;
+    height:66px;
+    border:1px solid #cccccc;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -moz-box-shadow: 0px 0px 3px #000;
+    -webkit-box-shadow: 0px 0px 3px #000;
+    box-shadow: 0px 0px 3px #000;
+    -moz-box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+    background:transparent url('../images/bg-btn.png') repeat-x 0 0;
+    font-size:26px;
+    line-height:66px;
+    color:#3b2825;
+    text-shadow:1px 1px 0 #fff;
+    font-weight:normal;
+    font-family:PlantinStdSemibold;
+    text-shadow:1px 1px 0 rgba(255,255,255,0.7);
+    text-decoration:none;
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;}
+a.btn:hover { 
+    margin-top:2px;
+    -moz-box-shadow: 0px 0px 3px #000;
+    -webkit-box-shadow: 0px 0px 3px #000;
+    box-shadow: 0px 0px 3px #000;}
+a.btn-sign { font-size:16px; }
+a.btn-back { font-size:21px; }
+.double a.btn-back { margin-right:100px; }
+    a.btn-sign span { 
+        display:block;
+        float:right;
+        text-align:center;
+        line-height:18px;
+        padding:6px 20px 0 0; }
+    a.btn-sign small { font-size:12px; display:block;}
+a.btn-how { font-size:16px; }
+    
+    a.btn img { float:left; margin:10px 8px 0 15px; }
+    a.btn-start img { margin:7px 8px 0 17px; }
+    a.btn-how img { margin:12px 10px 0 11px; }
+    a.btn-stop img { margin:12px 15px 0 22px; }
+    
+/* -- Brown buttons -- */
+a.btn-brown,
+input.btn-submit {
+    background:transparent url('../images/bg-btn-brown.png') repeat-x 0 0;
+    height:38px;
+    line-height:38px;
+    text-shadow:1px 1px 0 #222;
+    text-shadow:1px 1px 0 rgba(0,0,0,0.4); 
+    color:#fff;
+    text-align:center; 
+    font-size:17px;
+    margin:4px 5px;
+    cursor:pointer;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow:none;}
+a.btn-brown:hover,
+a.btn-brown.selected,
+input.btn-submit:hover { 
+    background:transparent url('../images/bg-btn-brown-active.png') repeat-x 0 0;
+    margin:4px 5px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow:none;}
+    
+/* -- Time selector -- */
+#timeSelect {
+    float:left;
+    margin:15px 30px 0px 0px;
+    width:160px; }
+    #timeSelect label {
+        display:block;
+        font-size:14px;
+        text-align:center; }
+        
+/* -- Standardized forms -- */
+form.standard {  }
+    form.standard input.text {
+        font-size:15px;
+        color:#3c2825;
+        border:1px solid #b4b4b4;
+        width:210px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        display:inline;
+        text-align:center;
+        font-family:PlantinStdSemibold;
+        padding:6px 10px;
+        margin:8px 41px; }
+    form.standard input.password { font-family:georgia,'times new roman',serif; }
+    form.standard input.text:focus { border:1px solid #696969; outline:none; }
+    form.standard input.btn-submit { display:block; margin:10px 0px 10px 80px; padding-bottom:3px; }
+
+            
+/* -----  Classes  ----- */
+.floatRight { float:right; }
+.floatLeft { float:left; }
+.alignLeft { text-align:left; }
+.alignCenter { text-align:center; }
+.alignRight { text-align:right; }
+.clear { clear:both; }
+.hidden { display:none; }

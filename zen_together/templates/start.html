@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+    {%block title %}ZenTogether ~ Let's meditate.{% endblock %}
+    
+{% block scripts %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.countdown.js"></script>
+<script type="text/javascript">
+function go(time){
+    var sound = "0"
+    if(document.getElementById("soundCheck").checked == true){
+        sound = "1"
+        mpq.track("Meditate "+String(time));
+    }
+    else
+        mpq.track("Meditate "+String(time)+" no sound");
+    window.location = "http://www.zentogether.com/zen/go/"+String(time)+"?s="+sound;
+}
+
+function loginInit(){
+        mpq.track("\/zen\/go fb init");
+    }
+function like(){
+        mpq.track("\/zen\/go fb like\/share");
+    }
+</script>
+{% endblock %}
+
+
+{% block mainDiv %}
+<div class="box">
+{% endblock %}
+
+
+{% block body %}
+{% load allauth_tags %}
+{% include "socialaccount/snippets/login_extra.html" %}
+            <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=293940257296747";
+                        fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                </script>
+    
+        <h1 class="alignCenter">Let's meditate.</h1>
+        <img src="{{ STATIC_URL }}images/fleuron-large-brown.png" alt="" class="divider" />
+    
+        <div id="timeSelect">
+            <label>For how long?</label>
+            <a onclick="go(16);" class="btn btn-brown btn-8">16 minutes</a>
+            <a onclick="go(8);" class="btn btn-brown btn-8">8 minutes</a>
+            <a onclick="go(4);" class="btn btn-brown btn-8">4 minutes</a>
+            <a onclick="go(2);" class="btn btn-brown btn-8">2 minutes</a>
+            <label><input type="checkbox" id="soundCheck" />Hear the waves</label>
+            <br class="clear" />
+        </div>
+        
+        <br/><br/><br/><br/>
+        <p>Please leave your mouse and keyboard, and use headphones to reduce distractions.</p>
+        <p>Now sit in a comfortable, upright position with your back straight and feet on the floor.</p>
+        <p>Be aware of your body as you focus on your breath and close your eyes.</p>
+        <br/><br/>
+        {% if friends > 0 %}
+            
+            <div style="margin-left:auto; margin-right:auto; text-align:center;">
+            <p style="text-align: center">You are in the company of {{ zenFriendMap|length }} friend{{ zenFriendMap|length|pluralize }}.</p>
+            {% for name,data in zenFriendMap.items %}
+            {% if data.1 != "" %}
+                <script type="text/javascript">
+
+
+                    $(function () {
+                        $('#{{ data.0 }}timer').countdown({until: ({{ data.1 }}), 
+                                                             format: 'MS', 
+                                                             compact:true, 
+                                                             expiryText:'~' } )
+                    });
+                </script>
+            {% endif %}
+                <div style="display: inline-block; padding:5px; font-family:PlantinStdSemibold;">{{ name }}<br/><img src="http://graph.facebook.com/{{ data.0 }}/picture"</><br/>
+                    <div id="{{ data.0 }}timer" >~</div>
+                </div>
+            {% endfor %}
+            
+            </div>
+
+            <p style="text-align: center">Get started now and do nothing together!</p>
+        {% else %}
+            <br/>
+             <div style="text-align:center;">
+            {% if request.user.is_authenticated and not social %}
+            <p style="text-align: center">Login with Facebook to zen with friends.  By meditating together, you will all earn bonus karma points!</p>
+            <a title="Facebook" class="socialaccount_provider facebook" href="{% facebook_login_url %}"><img src="{{ STATIC_URL }}images/btn-fbconnect.png" alt="" class="divider"/></a>
+            {% else %}{% if request.user.is_authenticated and social %}
+            <p style="text-align: center">Use Facebook to zen with friends.  By meditating together, you will all earn extra karma points!</p>
+            {% else %}
+            <p style="text-align: center">Login with Facebook to zen with friends.  By meditating together, you will all earn bonus karma points!</p>
+            <a title="Facebook" class="socialaccount_provider facebook" onclick="loginInit();" href="{% facebook_login_url %}"><img src="{{ STATIC_URL }}images/btn-fbconnect.png" alt="" class="divider"/></a><br/>
+            {% endif %}{% endif %}
+            </div>
+        {% endif %}
+        
+        {% if error %}
+            <p style="text-align:center; color:red; font-weight:bold"> {{ error|safe }} </p>
+        {% endif %}
+        <div style="text-align:center;">
+             <div class="fb-like" id="boofb" onclick="like();" style="height:50px; width:auto; margin:0 auto" data-href="http://www.zentogether.com" data-send="true" data-width="200" data-show-faces="false" data-font="lucida grande"></div>
+             </div>
+        <br class="clear" />
+
+{% endblock %}
+
+{% block nav %}
+ <div class="container single" id="buttons">
+        <a href="/" class="btn btn-back"><img src="{{ STATIC_URL }}images/icon-stop.png" alt="" class="floatLeft" />Go Back</a>
+    </div>
+
+
+{% endblock %}
+
+</body>
+</html>

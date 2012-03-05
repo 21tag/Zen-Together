@@ -1,0 +1,13 @@
+/*   
+
+IE.CSS
+Contains:    IE-Specific styles (IE7 and older)
+For:         ZenTogether
+By:          Joey @ Goose Rock Design : gooserockdesign.com
+             joey@gooserockdesign.com
+Created:     05/29/11 Joey
+
+*/
+
+.box .leftColumn,
+.box .rightColumn { display:inline; }

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+<script type="text/javascript">
+function go(time){
+    var sound = "0"
+    if(document.getElementById("soundCheck").checked == true)
+        sound = "1"
+    window.location = "http://www.zentogether.com/zen/go/"+String(time)+"?s="+sound;
+}
+</script>
+{% endblock %}
+
+{% block mainDiv %}
+    {% if user.is_authenticated %}
+    <div class="box initial">
+    {% else %}
+    <div class="box initial" style="height: 166px; padding:30px 0 0;">
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+        <img src="{{ STATIC_URL }}images/logo.png" alt="ZenTogether" id="logo" />
+        
+        {% if not user.is_authenticated %}
+        <h2>let's do nothing</h2>
+        <div style=" text-align:center; margin-left:auto; margin-right:auto;">
+            <a href="/zen/go/2" style="margin-left:200px;"class="btn btn-brown btn-8">2 minutes</a>
+        </div><br/><br/>
+        {% else %}
+        <h2>bring peace to your desktop</h2>
+        {% endif %}
+        
+    </div>
+    
+    <div class="box brown marginFix">
+        <img src="{{ STATIC_URL }}images/fleuron-small-gray.png" alt="" class="divider" />
+        <h3>{{ totalZen }}<small>minutes of peace to date</small></h3>
+    </div>
+    
+{% endblock %}
+
+{% block nav %}
+        <a href="/accounts/login/" class="btn btn-sign"><img src="{{ STATIC_URL }}images/icon-profile.png" alt="" class="floatLeft" /><span>Sign Up<small>&mdash; or &mdash;</small>Sign In</span></a>
+        <a href="/zen" class="btn btn-start"><img src="{{ STATIC_URL }}images/icon-start.png" alt="" class="floatLeft" />Start</a>
+        <a href="/about/" class="btn btn-how"><img src="{{ STATIC_URL }}images/icon-how.png" alt="" class="floatLeft" />How to play</a>
+{% endblock %}

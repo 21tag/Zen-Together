@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+    <title>{%block title %}ZenTogether{% endblock %}</title>
+    <meta property="og:title" content="Zen Together" />
+    <meta property="og:type" content="activity" />
+    <meta property="og:url" content="http://www.zentogether.com/" />
+    <meta property="og:image" content="http://zentogether.com/static/images/zt.gif" />
+    <meta property="og:site_name" content="Zen Together" />
+    <meta property="fb:admins" content="15508084" />
+    <meta property="og:description"
+          content="Do nothing with friends!"/>
+    <meta name="google-site-verification" content="jlC41RNbFBKimeMwAPMTu2bydg_Kb0Mef67T5xGPyDk" />
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css" type="text/css" />
+    <!--[if lte IE 7]><link rel="stylesheet" href="css/ie.css" type="text/css" /><![endif]-->
+    
+    
+    <link rel="icon" href="{{ STATIC_URL }}favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="{{ STATIC_URL }}favicon.png" type="image/png" />
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+
+    {% block scripts %}
+    {% endblock %}
+
+    <script type="text/javascript">
+    var mpq = [];
+    mpq.push(["init", "a166ba6ea7709a6f6ec78708ad4c98e6"]);
+    (function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";
+    b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+
+    "//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];
+    a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push(
+    [f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links",
+    "track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<
+    d.length;c++){mpq[d[c]]=e(d[c])}})();
+    </script>
+    
+</head>
+
+<body>
+
+{% block mainDiv %}
+<div class="box signUp">
+{% endblock %}
+
+{% block body %}
+{% endblock %}
+</div>
+
+<div class="container" id="navigation">
+	{% block nav %}
+    <a href="/" class="btn btn-back"><img src="{{STATIC_URL}}images/icon-stop.png" alt="" class="floatLeft" />Go back</a>
+    <a href="/zen" class="btn btn-start"><img src="{{STATIC_URL}}images/icon-start.png" alt="" class="floatLeft" />Start</a>
+    <a href="/about" class="btn btn-how"><img src="{{STATIC_URL}}images/icon-how.png" alt="" class="floatLeft" />How to play</a>
+  {% endblock %}
+</div>
+</body>
+
+{% block booty %}
+{% endblock %}
+
+
+
+</html>

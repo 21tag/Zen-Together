@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+function like(){
+        mpq.track("\/about fb like\/share");
+}
+</script>
+{% endblock %}
+
+{% block body %}
+        <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=293940257296747";
+                        fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                </script>
+
+        <h1 class="alignCenter">How this works:</h1>
+        <img src="{{ STATIC_URL }}images/fleuron-large-brown.png" alt="" class="divider" />
+        <br/>
+        <p>Welcome to ZenTogether, a game designed to help you do absolutely nothing.  For everyone who needs a moment of zen, we encourage you to use ZenTogether to track your meditation progress. As you meditate with friends, your karma points increase according to the number of friends meditating together. Two mindful friends each receive double points, three friends triple points, etc.</p>
+        <h2>21st Century Tag</h2>
+        <br/>
+        <p><img src="{{ STATIC_URL }}images/zt.gif" alt="Zen" class="floatLeft" />ZenTogether is just one product from 21st Century Tag, <a href="http://pleasestealthisidea.com/21st-century-tag-is-our-first-official-crowd">the first crowd-up</a> in online social gaming.  We make life playable.  You make it fun.</p>
+        <br/><br/>
+        
+         <div style="text-align:center;">
+         <p class="alignCenter">Spread the word!</p>
+         <div class="fb-like" id="boofb" onClick="like();" style="height:50px; width:auto; margin:0 auto" data-href="http://www.zentogether.com" data-send="true" data-width="200" data-show-faces="false" data-font="lucida grande"></div>
+         </div>
+        
+        
+{% endblock %}
+
+{% block nav %}
+        <a href="/accounts/login/" class="btn btn-sign"><img src="{{ STATIC_URL }}images/icon-profile.png" alt="" class="floatLeft" /><span>Sign Up<small>&mdash; or &mdash;</small>Sign In</span></a>
+        <a href="/zen/" class="btn btn-start"><img src="{{ STATIC_URL }}images/icon-start.png" alt="" class="floatLeft" />Start</a>
+        <a href="/" class="btn btn-back"><img src="{{STATIC_URL}}images/icon-stop.png" alt="" class="floatLeft" />Go back</a>
+{% endblock %}

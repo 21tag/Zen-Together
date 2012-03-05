@@ -1,0 +1,33 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block body %}
+    <h1 class="alignCenter">{% trans "Sign Up" %}</h1>
+    <img src="{{ STATIC_URL }}images/fleuron-large-brown.png" alt="" class="divider" />
+    <br/><br/>
+    {% if user.is_authenticated %}
+{% include "account/snippets/already_logged_in.html" %}
+    {% else %}
+        <p class="alignCenter">{% trans "Do you already have an account?" %} <a href="{{ login_url }}">{% trans "Sign in" %}</a>.</p>
+        
+        <form class="alignCenter" id="signup_form" method="post" action="{% url account_signup %}">
+            {% csrf_token %}
+            <fieldset class="inlineLabels">
+                {{ form|as_uni_form }}
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <div class="buttonHolder">
+                    <input class="btn-submit" style="margin-left:190px;" type="submit" value="Sign Up">
+                </div>
+            </fieldset>
+        </form>
+        
+    {% endif %}
+{% endblock %}
+
+

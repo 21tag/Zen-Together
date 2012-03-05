@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load allauth_tags %}
+{% load i18n %}
+{% load uni_form_tags %}
+{% load account_tags %}
+
+{% block title %}ZenTogether ~ Sign up or Sign in {% endblock %}
+
+{% block body %}
+  
+    {% if not user.is_authenticated %}
+    <p class="alignCenter">
+    {% if allauth.facebook_enabled %}
+            <a href="{% facebook_login_url %}">
+            <img src="{{STATIC_URL}}images/btn-fbconnect.png" alt="" class="divider"/>
+            </a><br/>
+            <em>&mdash; or &mdash;</em>
+    {% endif %}</p>
+
+            <h1 class="alignCenter">Sign Up or Sign In</h1>
+            <img src="{{STATIC_URL}}images/fleuron-large-brown.png" alt="" class="divider" />
+            <br/><br/>
+            
+            <form class="standard" method="POST" action="{% url account_login %}">
+        {% csrf_token %}
+        <fieldset class="inlineLabels">
+            {{ form|as_uni_form }}
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <div class="buttonHolder">
+                <a class="button secondaryAction" href="{% url account_reset_password %}">{% trans "Forgot Password?" %}</a>
+                <a class="button secondaryAction" href="{% url account_logout %}">{% trans "Log out" %}</a>
+
+                <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+            </div>
+        </fieldset>
+    </form>
+                        
+    {% else %}
+        <h1 class="alignCenter">Welcome {{ first_name }}!</h1>
+        <h2 class="alignCenter"><a href="/logout/">Log out.</a></h2>
+
+        <div class="box brown timer">
+        <h3 id="itsTheFinalCountdown">{{ karmaPts }}</h3>
+        </div>
+    {% endif %}
+    
+{% endblock %}
+
+{% block scripts %}
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% endblock %}

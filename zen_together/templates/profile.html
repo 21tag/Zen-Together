@@ -1,0 +1,86 @@
+
+{% extends "base.html" %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+function like(){
+        mpq.track("\/about fb like\/share");
+}
+
+function save() {
+        pref = document.getElementById("fbStreamCheck").checked;
+        $.get("/zen/savePrefs/", {"fbStream" : pref  } );
+}
+</script>
+{% endblock %}
+
+{% block body %}
+        <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=293940257296747";
+                        fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                </script>
+
+        <h1 class="alignCenter">Path to Enlightenment</h1>
+        <img src="{{ STATIC_URL }}images/fleuron-large-brown.png" alt="" class="divider" />
+        <br/>
+        <div class="alignCenter">
+        <div style="margin-left:auto; margin-right:auto; text-align:center;">
+        <div style="display:inline-block; padding:5px; text-align:center;">
+        <h1 style"color:#fff; padding:0px;font-family:PlantinStdSemibold;">{{ karmaPts }}</h1>
+        <h2 style"padding:0px;">Karma Points</h2>
+        </div>
+        <div style="display:inline-block; padding:5px; text-align:center;">
+        <h1 style"padding:0px;font-family:PlantinStdSemibold;">{% if hasZenned %} {{ lastZenDate }} {% else %} Never {% endif %}</h1>
+        <h2 style"padding:0px;">Last Meditation</h2>
+        </div>
+        <div style="display:inline-block; padding:5px; text-align:center;">
+        <h1 style"padding:0px;font-family:PlantinStdSemibold;">{{ numZen }}</h1>
+        <h2 style"padding:0px;">Total Meditations</h2>
+        </div><br/><br/>
+    </div>
+        {% for unit in meditations %}
+        {% if forloop.first %}
+                <h2 class="alignCenter" style="font-family:PlantinStdSemibold;">Last {{meditations|length}} Meditation{{meditations|length|pluralize}}</h2>
+                <div>
+                 <div style="display: inline-block; padding:5px; width:80px"><h2>Minutes</h2>
+                </div>
+                <div style="display: inline-block; padding:5px; width:50px"><h2>Friends</h2>
+                </div>
+                <div style="display: inline-block; padding:5px; width:100px"><h2>Moment</h2>
+                </div>
+                <div style="display: inline-block; padding:5px; width:150px"><h2>Place</h2>
+                </div>
+                </div>
+                {% endif %}
+        <div>
+                <div style="display: inline-block; padding:5px;  width:80px">{{ unit.duration }}
+                </div>
+                <div style="display: inline-block; padding:5px;  width:50px">{{ unit.people.all|length }}
+                </div>
+                <div style="display: inline-block; padding:5px;  width:100px">{{ unit.getDate }}
+                </div>
+                <div style="text-align: center; display: inline-block; padding:5px; width:150px">{{ unit.place }}
+                </div>
+
+        </div>
+        {% endfor %}
+        {% if fbStreamPerm %}
+                <h2 class="alignCenter" style="font-family:PlantinStdSemibold;">Preferences</h2>
+                {% if fbStream %}
+                <input type="checkbox" id="fbStreamCheck" checked="checked" onclick="save();"/>Publish my meditations on 
+                facebook
+                {% else %}
+                <input type="checkbox" id="fbStreamCheck" onclick="save();"/>Publish my meditations on 
+                facebook
+                {% endif %}
+        {% endif %}
+        </div>
+        
+{% endblock %}
+

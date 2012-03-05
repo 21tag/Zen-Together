@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+
+    <title>ZenTogether ~ I'm meditating.</title>
+    <meta property="og:title" content="Zen Together" />
+    <meta property="og:type" content="activity" />
+    <meta property="og:url" content="http://www.zentogether.com/" />
+    <meta property="og:image" content="http://zentogether.com/static/images/zt.gif" />
+    <meta property="og:site_name" content="Zen Together" />
+    <meta property="fb:admins" content="15508084" />
+    <meta property="og:description"
+          content="Do nothing with friends!"/>
+    
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css" type="text/css" />
+    <!--[if lte IE 7]><link rel="stylesheet" href="css/ie.css" type="text/css" /><![endif]-->
+    
+    
+    <link rel="icon" href="{{ STATIC_URL }}favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="{{ STATIC_URL }}favicon.png" type="image/png" />
+    {% load allauth_tags %}
+    {% load tracking_tags %}
+    {% visitors_on_site as visitors %}
+    {% visitors_on_page as same_page %}
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.countdown.js"></script>
+
+    <audio  id="start_gong" preload="auto" autobuffer volume:.5>
+    <source src="{{STATIC_URL}}audio/start_gong.ogg" />
+    <source src="{{STATIC_URL}}audio/start_gong.mp3" />
+    </audio>
+    <audio  id="end_gong" preload="auto" autobuffer volume:.5>
+    <source src="{{STATIC_URL}}audio/end_gong.ogg" />
+    <source src="{{STATIC_URL}}audio/end_gong.mp3" />
+    </audio>
+    {% if sound == "1" %}
+    <audio  id="waves" preload="auto" autobuffer volume:.5>
+    <source src="{{STATIC_URL}}audio/wave_main.ogg" />
+    <source src="{{STATIC_URL}}audio/wave_main.mp3" />
+    </audio>
+    <audio  id="waves_fill" preload="auto" autobuffer volume:.5>
+    <source src="{{STATIC_URL}}audio/waves_tran.ogg" />
+    <source src="{{STATIC_URL}}audio/waves_tran.mp3" />
+    </audio>
+    {% endif %}
+    {% if sound == "c" %}
+    <audio  id="waves" preload="auto" autobuffer volume:.5>
+    <source src="{{STATIC_URL}}audio/city.ogg" />
+    <source src="{{STATIC_URL}}audio/city.mp3" />
+    </audio>
+    {% endif %}
+
+
+    <script type="text/javascript">
+    var quotes = ["I have so much to accomplish today that I must meditate for two hours instead of one.~Gandhi","He who knows much about others may be learned, but he who understands himself is more intelligent. He who controls others may be powerful, but he who has mastered himself is mightier still.~Tao te Qing","The sage manages affairs without doing anything, and conveys his instructions without the use of speech. ~Tao te Qing","Most of the shadows of this life are caused by our standing in our own sunshine.~Ralph Waldo Emerson","To live is like to love--all reason is against it, and all healthy instinct for it.~Samuel Butler","When we are unable to find tranquility within ourselves, it is useless to seek it elsewhere.~Francois de La Rochefoucauld","Sometimes the most important thing in a whole day is the rest we take between two deep breaths.~Etty Hillesum","There is more to life than increasing its speed.~Gandhi","Nothing is permanent in this wicked world - not even our troubles.~Charlie Chaplin","The quieter you become, the more you can hear.~Baba Ram Dass","A crust eaten in peace is better than a banquet partaken in anxiety.~Aesop","The only Zen you find on the tops of mountains is the Zen you bring up there.~Robert M. Pirsig","This is the Zen approach: nothing is there to be done. There is nothing to do. One has just to be. Have a rest. Be ordinary and be natural.~Osho","Don't seek, don't search, don't ask, don't knock, don't demand - relax. If you relax, it comes. If you relax, it is there. If you relax, you start vibrating with it.~Osho","Misery is complexity. Happiness is simplicity.~Lester Levenson","The more you have, the more you are occupied, the less you give.~Mother Teresa","Wisdom tends to grow in proportion to one's awareness of one's ignorance.~Anthony de Mello","The less you open your heart to others, the more your heart suffers.~Deepak Chopra","If you reflect within yourself and find nothing to be ashamed of, how could you have anxiety or fear.~Confucious","The personal life deeply lived always expands into truths beyond itself.~Anais Nin","Your vision will become clear only when you look into your heart. Who looks outside, dreams. Who looks inside, awakens.~Carl Jung","Your work is to discover your world and then with all your heart give yourself to it.~Buddha","In the attitude of silence the soul finds the path in a clearer light, and what is elusive and deceptive resolves itself into crystal clearness.~Gandhi","Follow your bliss and don't be afraid, and doors will open where you didn't know they were going to be.~Joseph Campbell","It is love alone that leads to right action. What brings order in the world is to love and let love do what it will.~Jiddu Krishnamurti","Look at every path closely and deliberately, then ask yourself this crucial question: Does this path have a heart? If it does, then the path is good. If it does not, it is of no use.~Carlos Castaneda","In the sky, there is no distinction of east and west; people create distinctions out of their own minds and then believe them to be true.~Buddha","No one in the world was ever you before, with your particular gifts and abilities and possibilities. It's a shame to waste those by doing what someone else has done.~Joseph Campbell","We will discover the nature of our particular genius when we stop trying to conform to our own or other people's models, learn to be ourselves, and allow our natural channel to open.~Shakti Gawain","Happiness is not pleasure, it is victory.~Zig Zaglar","The more laws and order are made prominent, the more thieves and robbers there will be.~Tao te Qing","Respond intelligently even to unintelligent treatment.~Tao te Qing","One who is too insistent on his own views, finds few to agree with him.~Tao te Qing","The best soldier does not attack. The superior fighter succeeds without violence. The greatest conqueror wins without struggle. The most successful manager leads without dictating. This is intelligent non aggressiveness. This is called the mastery of men.~Tao te Qing","Muddy water, let stand, becomes clear.~Tao te Qing","A tree that can fill the span of a mans arms grows from a downy tip; A terrace nine stories high rises from level earth; A journey of a thousand miles starts from beneath ones feet.~Tao te Qing","To know that you do not know is the best. To pretend to know when you do not know is a disease.~Tao te Qing","Great acts are made up of small deeds.~Tao te Qing","A scholar who cherishes the love of comfort is not fit to be deemed a scholar.~Tao te Qing","He who loves the world as his body may be entrusted with the empire.~Tao te Qing","He who knows does not speak. He who speaks does not know.~Tao te Qing","He who knows others is wise. He who knows himself is enlightened.~Tao te Qing","Avoid putting yourself before others, and you can become a leader among men.~Tao te Qing","Goodness in words creates trust, goodness in thinking creates depth, goodness in giving creates love.~Tao te Qing","The more laws that are written, the more criminals are produced.~Tao te Qing","Life is a series of natural and spontaneous changes. Dont resist them-that only creates sorrow. Let reality be reality. Let things flow naturally forward in whatever way they like.~Tao te Qing","A journey of a thousand miles must begin with a single step.~Tao te Qing","Seek not happiness too greedily, and be not fearful of happiness.~Tao te Qing","He who overcomes others is strong, but he who overcomes himself is mighty.~Tao te Qing","In dwelling, live close to the ground. In thinking, keep to the simple.~Tao te Qing","If you want to become full, let yourself be empty.~Tao te Qing","If you want to be given everything, give everything up.~Tao te Qing","When there is no desire, all things are at peace.~Tao te Qing","The world is vast and wide. Why do you put on your robes at the sound of a bell?~Zen Master Unmon","Although the world is full of suffering, it is full also of the overcoming of it.~Helen Keller","If you are in the future, then ego seems to be very substantial. If you are in the present the ego is a mirage, it starts disappearing.~Osho","If you understand, things are just as they are... If you do not understand, things are just as they are.~Zen Proverb","As one lamp serves to dispel a thousand years of darkness, so one flash of wisdom destroys ten thousand years of ignorance~Hui-Neng","Seize from every moment its unique novelty and do not prepare your joys~Andre Gide","Life is either a daring adventure or nothing. Security does not exist in nature, nor do the children of men as a whole experience it. Avoiding danger is no safer in the long run than exposure~Helen Keller","I do not cut my life up into days but my days into lives, each day, each hour, an entire life.~Juan Ramon Jimenez","A flower falls, even though we love it; and a weed grows, even though we do not love it.~Dogen Zenji","We do not learn by experience, but by our capacity for experience~Buddha","The world is ruled by letting things take their course.~Lao-Tsu","We would never learn to be brave and patient if there were only joy in the world.~Helen Keller","One who conquers himself is greater than another who conquers a thousand times a thousand on the battlefield.~Buddha",]
+
+    var adjs = ["happy","grateful","determined","swell","helpful","sincere","authentic","content","focused","extraordinary","delightful","imaginative","reverent","successful","heroic","cheerful","inventive","unique","upright","tidy","open-minded","blissful","tough","glad","reposed","desirable","valiant","fair-minded","modest","ingenious","solid","courageous","profound","adaptable","worthy","colorful","joyful","laudable","cute","delectable","dependable","remarkable","confident","forbearing","funny","ready","lenient","magnetic","enlightened","authoritative","enterprising","righteous","luminous","exact","cognizant","ecstatic","lovely","entertaining","inspired","thorough","decent","helpful","pragmatic","witty","convincing","beautiful","resplendent","sexy","assured","competent","progressive","comedic","felicitous","accessible","commendable","sensual","sublime","sympathetic","compatible","discrete","influential","efficient","humorous","engaging","civil","merciful","believable","gentle","lucky","knowledgeable","serene","earnest","adroit","faithful","exultant","hospitable","gleeful","sparkling","cordial","soulful","appreciative","spontaneous","fascinating","brilliant","impartial","constant","natural","keen","merry","eloquent","sensible","comfortable","relaxed","soft-spoken","casual","loyal","stable","alive","charming","receptive","good looking","good mannered","shrewd","liberal","grounded","truthful","gorgeous","practical","industrious","brave","perfect","hardy","innocent","upright","enchanted","athletic","noble","diligent","gregarious","responsive","precious","satisfied","deep","cozy","law-abiding","agile","restrained","healthy","just","creative","genteel","meritorious","learned","right","approachable","harmonious","kissable","benevolent","lucid","conciliatory","even-tempered","nice","fun","bold","rich","accommodating","tender","fantastic","jolly","whimsical","defined","immaculate","diplomatic","bright","chatty","mild","proper","vigorous","wonderful","alluring","companionable","reflective","credible","punctual","elated","impressive","playful","intelligent","superb","original","devoted","pleasant","warm","powerful","convulsive","fabulous","gracious","altruistic","affirmative","direct","goodhearted","chaste","wise","philanthropic","robust","convivial","consistent","dedicated","persuasive","amazing","calm","nimble","desirable","good","studious","neighborly","confident","decisive","subtle","personable","peaceful","brainy","stylish","hopeful","big-hearted","affable","excellent","chic","intuitive","heedful","courteous","disarming","caring","fine","logical","tranquil","virtuous","attentive","provident","thoughtful","cerebral","jubilant","affectionate","forgiving","mindful","understanding","fruitful","winsome","sociable","elegant","masterly","fertile","great","tolerant","free","daring","deserving","polished","real","admirable","blessed","congenial","godly","openhanded","independent","compassionate","consummate","artistic","genuine","amorous","blissful","smooth","spry","complex","scholarly","easy-going","autonomous","accomplished","seemly","astute","rejoicing","philosophical","beneficent","privileged","established","sagacious","grand","important","resolute","radiant","genial","candid","deliberate","flexible","reliable","terrific","sharp","democratic","impressive","sweet","charitable","productive","good-natured","saintly","willing","awesome","sincere","clearheaded","dependable","prompt","splendid","sophisticated","prolific","worldly","energetic","amicable","discerning","generous","sunny","fashionable","mature","light","reasonable","priceless","suave","forthright","hilarious","respectful","comely","spiritual","appreciative","precious","steady","spirited","self-reliant","nourishing","thankful","positive","airy","systematic","handy","considerate","valiant","romantic","likeable","appropriate","adorable","refined","poetic","attractive","sentimental","ambitious","visionary","lively","prudent","vivacious","ethical","tender","dignified","agreeable","heavenly","dutiful","encouraging","rosy","gallant","versatile","amiable","thrifty","moral","speedy","balanced","concise","well-rounded","purposeful","enthusiastic","passionate","benign","accountable","moderate","captivating","strong","sprite","active","distinctive","responsible","discriminating","special","radiant","rascally","rational","ravishing","razor-sharp","ready","real","realistic","realized","reasonable","receptive","recommendable","recuperative","refined","reflective","refreshing","regal","rejoicing","rejuvenated","rejuvenating","relaxed","relaxing","reliable","relieved","relished","relishing","remarkable","renewed","renowned","reputable","resilient","resolute","resounding","resourceful","respectable","respected","respectful","resplendent","responsible","responsive","restive","restorative","retentive","rewarded","rewarding","revered","reverent","rhapsodic","rich","righteous","rightful","risible","robust","rollicking","romantic","rosy","rousing","rugged","pacifistic","parental","participative","particular","paramount","passionate","paternal","patient","peaceful","peppy","penultimate","perceptive","perfect","perky","permissive","persistent","personable","perspicacious","perspicuous","persuasive","pert","phenomenal","philanthropic","philosophical","picturesque","pioneering","pious","piquant","placid","playful","pleasant","pleased","pleasing","pleasurable","pliable","plucky","poetic","poised","polished","polite","popular","positive","powerful","practical","pragmatic","praiseworthy","prayerful","precious","precise","preferred","premium","prepared","prestigious","pretty","prevalent","prime","princely","principled","pristine","privileged","prodigious","productive","professional","proficient","profitable","profound","progressive","prolific","prominent","promising","prompt","proper","propitious","prophetic","prosperous","protective","provocative","proud","prudent","public-spirited","pulchritudinous","punctual","pure","purposeful","valorous","valiant","valuable","venerable","venerated","venturesome","veracious","versatile","vibrant","victorious","vigilant","vigorous","virtuous","visionary","vital","vivacious","vocal","vogue","volitional","voluptuous","dapper","daring","dazzling","dashing","debonair","dear","decent","decisive","decorous","dedicated","deep","defiant","definite","deft","delectable","deliberate","delighted","delightful","dependable","deserving","destined","determined","developed","developing","devoted","devout","dexterous","dignified","diligent","diplomatic","direct","disarming","discerning","disciplined","discrete","discriminating","disporting","distinctive","distinguished","diverse","divine","down-to-earth","dreamy","driven","durable","dynamic","dynamite"];
+    var quote = quotes[Math.floor(Math.random()*66)];
+    var author = quote.split("~")[1]
+    var quote = quote.split("~")[0]
+    var adj = adjs[Math.floor(Math.random()*597)];
+    if (adj[0] == "a" || adj[0] == "e" || adj[0] == "i" || adj[0] == "o" || adj[0] == "u" ){
+        adj = "n "+ adj;
+    }
+    else{
+        adj = " " + adj;
+    }
+    var start_gong = document.getElementById("start_gong");
+    var end_gong = document.getElementById("end_gong");
+
+    {% if sound == "1" or sound == "c" %}
+    var waves = document.getElementById("waves");
+
+    waves.addEventListener('ended', 
+        function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+
+    waves.play();
+    {% endif %}
+
+    var warnCnt = 0;
+    var done = 0;
+    var timeMult = 60;
+
+    function bindListeners(){
+        if(done == 0){
+            setTimeout(function() {
+                $(document).bind('mouseenter focus keydown mousemove mousedown', warn);
+                $(document).bind('mouseleave blur', warn );
+            }, 1500);
+        }
+                
+    }
+
+    function unbindListeners(){
+            $(document).unbind('mouseenter focus keydown mousemove mousedown', warn);
+            $(document).unbind('mouseleave blur', warn );
+    }
+    function warn(){
+        if(done == 0){
+            $('#itsTheFinalCountdown').animate({opacity:.3}, 500,
+                function() {
+                    $('#itsTheFinalCountdown').animate({opacity:1}, 500);
+                });
+            if(warnCnt == 0){
+                $('#zenMessage').animate({opacity:0}, 500, 
+                    function() {
+                        $('#itsTheFinalCountdown').countdown('pause');
+                        $('#zenMessage').text('Zen disturbed. Remain still to begin again.');
+                        $('#zenMessage').animate({opacity:1}, 500);
+                    });
+                unbindListeners();
+                bindListeners();
+                setTimeout(function() {
+                    resetTimer();
+                    start_gong.play();
+                }, 2500);
+                
+                warnCnt = 1;
+            }
+            else{
+                $('#zenMessage').animate({opacity:0}, 500, 
+                    function() {
+                        $('#itsTheFinalCountdown').countdown('pause');
+                        $('#zenMessage').text('Be still. Click here to begin again.');
+                        $('#zenMessage').bind('mousedown', function(){
+                                                                bindListeners();
+                                                                start_gong.play();
+                                                                resetTimer();
+                        });
+                        $('#zenMessage').animate({opacity:1}, 500);
+                    });
+                unbindListeners();
+                //warnCnt = 0;
+            } 
+        }
+    }
+
+    function resetTimer() {
+        $.get("/zen/reset/");
+        $('#zenMessage').animate({opacity:0}, 500, 
+                    function() {
+                        $('#zenMessage').text('Please be considerate and patient while I am playing ZenTogether.');
+                        $('#zenMessage').animate({opacity:1}, 500);    
+                    });
+        $('#itsTheFinalCountdown').countdown('destroy');
+        $('#itsTheFinalCountdown').countdown({until: +timeMult*{{time}} , 
+                                              format: 'MS', 
+                                              compact:true,
+                                              onExpiry:complete} );
+    }
+
+    function exit() {
+        if (done==0){
+            $.get("/zen/exit/");
+            mpq.track("Aborted "+String({{time}})+"m meditation");
+        }
+    }
+
+    function complete() { 
+        unbindListeners();
+        done = 1;
+        end_gong.play();
+        $('#zenTitle').animate({opacity:0}, 500);
+        $('#itsTheFinalCountdown').animate({opacity:0}, 500, 
+                function() {
+                    $('#zenQuote').html("\""+quote+"\"");
+                    $('#zenQuote').animate({opacity:1}, 500);
+                    $('#zenAuthor').text("-"+author);
+                    $('#zenAuthor').animate({opacity:1}, 2500);
+                    $('#zenTitle').html("<img src=\"{{ STATIC_URL }}images/icon-start.png\" alt=\"\" />Congratulations!");
+                    $('#zenTitle').animate({opacity:1}, 500);
+                    $('#itsTheFinalCountdown').text("+ " + {{ time }} * ({{friends}}+1) + " Pts!");
+                    $('#itsTheFinalCountdown').animate({opacity:1}, 500);
+                    $("#boofb").animate({opacity:100},500);
+                });
+        {% if request.user.is_authenticated %}
+            $('#zenMessage').animate({opacity:0}, 500, 
+                function() {
+                    $('#zenMessage').html("Have a"+adj+" day.<br/>View your <a href=\"/profile\">Path to Enlighenment</a><br/><br/>");
+                    $('#zenMessage').animate({opacity:1}, 500);
+                });
+            $.get("/zen/complete/", {"time" : {{ time }}  } );
+        {% else %}
+             $('#zenMessage').animate({opacity:0}, 500, 
+                function() {
+                    $('#zenMessage').html("Have a"+adj+" day. <br/><br/>Login to claim your Karma Points: <a title=\"Facebook\" class=\"socialaccount_provider facebook\" onclick=\"loginInit();\"href=\"{% facebook_login_url %}\"><img src=\"{{ STATIC_URL }}images/btn-fbconnect.png\" alt=\"\" class=\"divider\"/></a>");
+                    $('#zenMessage').animate({opacity:1}, 500);
+                });
+        {% endif %}
+        mpq.track("Completed "+String({{time}})+"m meditation");
+    }
+
+    $(function () {
+        
+        $("#boofb").animate({opacity:0},1);
+        $("#zenQuote").animate({opacity:0},1);
+        $("#zenAuthor").animate({opacity:0},1);
+        setTimeout(function() {
+            $('#itsTheFinalCountdown').countdown({until: +timeMult*{{time}} , 
+                                                 format: 'MS', 
+                                                 compact:true,
+                                                 onExpiry:complete} );
+            bindListeners();
+            start_gong.play();
+        }, 750);
+    });
+
+    function loginInit(){
+        mpq.track("\/zen\/go fb init");
+    }
+    function like(){
+        mpq.track("\/zen\/go fb like\/share");
+    }
+    </script>
+
+    <script type="text/javascript">
+    var mpq = [];
+    mpq.push(["init", "a166ba6ea7709a6f6ec78708ad4c98e6"]);
+    (function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";
+    b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+
+    "//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];
+    a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push(
+    [f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links",
+    "track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<
+    d.length;c++){mpq[d[c]]=e(d[c])}})();
+    </script>
+
+</head>
+{% if sound == "c" %}
+<body onUnload="exit();" style="background:#000 url('{{STATIC_URL}}/images/Graffiti_Lower_East_Side.JPG') no-repeat 0 0;">
+{% else %}
+<body onUnload="exit();">
+{% endif %}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=293940257296747";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    
+    <div class="box meditating" style="text-align:center;">
+        <h1 id="zenTitle" class="alignCenter">I'm meditating.</h1>
+        <img src="{{ STATIC_URL }}images/fleuron-large-brown.png" alt="" class="divider" /><br/>
+        <h2 class="alignCenter" id="zenMessage">Please be considerate and patient while I am playing ZenTogether.</h2>
+        <h2 class="alignCenter" id="zenQuote"></h2>
+        <h2 style="padding-right:5px; text-align:right" id="zenAuthor"></h2>
+        <br/>
+        {% if zenFriendMap|length != 0 or zenStrangerList|length > 0 %}
+            <div style="margin-left:auto; margin-right:auto; text-align:center;">
+            <p style="text-align: center"> You are in the company of 
+            {% if zenStrangerList|length > 0 %}
+                {{ zenStrangerList|length }} worldwide meditator{{ zenStrangerList|length|pluralize }} 
+                {% if zenFriendMap|length != 0 %} 
+                    and 
+                {{ zenFriendMap|length }} friend{{ zenFriendMap|length|pluralize }}
+                {% endif %}
+            {% else %}{% if zenFriendMap|length != 0 %}
+                {{ zenFriendMap|length }} friend{{ zenFriendMap|length|pluralize }}
+            {% endif %}
+        {% endif %}</p>
+            {% for name,data in zenFriendMap.items %}
+                <div style="display: inline-block; padding:5px; font-family:PlantinStdSemibold;">{{ name }}<br/><img src="http://graph.facebook.com/{{ data.0 }}/picture"</><br/>
+                </div>
+            {% endfor %}
+            {% for dude in zenStrangerList %}
+                <div style="display: inline-block; padding:5px; font-family:PlantinStdSemibold;">{% if dude.0 != '' %}<img src="{{ STATIC_URL }}/images/flags/{{ dude.0 }}.png">{% endif %}{% if dude.0 == "us" %}{{ dude.1 }}{% endif %}<br/><img src="{{STATIC_URL}}images/icon-start.png"</><br/>
+                </div>
+            {% endfor %}
+    </div><br/>
+        {% endif %}
+        <div class="fb-like" onclick="like();" id="boofb" style="height:50px; width:auto; margin:0 auto" data-href="http://www.zentogether.com" data-send="true" data-width="300" data-show-faces="false" data-font="lucida grande"></div>
+    </div>
+    
+    <div class="box brown timer">
+        <h3 id="itsTheFinalCountdown"></h3>
+    </div>
+    
+    <div class="container single" id="buttons">
+        <a href="/zen" class="btn btn-back"><img src="{{ STATIC_URL }}images/icon-stop.png" alt="" class="floatLeft" />Go Back</a>
+    </div>
+{% include "socialaccount/snippets/login_extra.html" %}
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signed Out" %}{% endblock %}
+
+{% block body %}
+<h1 class="alignCenter">{% trans "Signed Out" %}</h1>
+<img src="{{ STATIC_URL }}images/fleuron-large-brown.png" alt="" class="divider" />
+        <br/>
+
+<p class="alignCenter">{% trans "You have signed out." %}</p>
+{% endblock %}
+
+{% block nav %}
+    <a href="/accounts/login/" class="btn btn-sign"><img src="{{ STATIC_URL }}images/icon-profile.png" alt="" class="floatLeft" /><span>Sign Up<small>&mdash; or &mdash;</small>Sign In</span></a>
+    <a href="/zen" class="btn btn-start"><img src="{{STATIC_URL}}images/icon-start.png" alt="" class="floatLeft" />Start</a>
+    <a href="/about" class="btn btn-how"><img src="{{STATIC_URL}}images/icon-how.png" alt="" class="floatLeft" />How to play</a>
+    {% endblock %}

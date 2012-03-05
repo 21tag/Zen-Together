@@ -1,0 +1,5 @@
+{% load i18n %}
+{% load account_tags %}
+
+{% user_display user as user_display %}
+<p><strong>{% trans "Note" %}:</strong> {% blocktrans %}you are logged in as {{ user_display }}. <a href="/accounts/logout/">Log out.</a>{% endblocktrans %}</p>
