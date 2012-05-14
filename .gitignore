@@ -33,3 +33,8 @@
 ehthumbs.db
 Icon?
 Thumbs.db
+
+# Project settings file #
+#########################
+
+./zen_together/settings.py
