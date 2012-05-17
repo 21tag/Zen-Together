@@ -1,6 +1,6 @@
 # Django settings for zen_together project.
 import os
-from secrets import DB_NAME, DB_USER, DB_PASS, DB_PORT
+from secrets import DB_NAME, DB_USER, DB_PASS, DB_PORT, EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_PORT
 
 DEPLOY = True
 DEBUG = True
@@ -215,7 +215,3 @@ LOGGING = {
 }
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mobilemileagetrckr@gmail.com'
-EMAIL_HOST_PASSWORD = 'p4ssword!'
-EMAIL_PORT = 587
