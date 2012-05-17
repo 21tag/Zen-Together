@@ -2,9 +2,9 @@ from django.conf.urls.defaults import patterns, include, url
 import settings
 import os
 
-from allauth.account.views import logout
-from allauth.socialaccount.views import login_cancelled, login_error
-from allauth.facebook.views import login as facebook_login
+#from allauth.account.views import logout
+#from allauth.socialaccount.views import login_cancelled, login_error
+#from allauth.facebook.views import login as facebook_login
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     url(r'^zen/reset/$', 'zen.views.reset'),
     url(r'^zen/exit/$', 'zen.views.exit'),
     url(r'^zen/savePrefs/$', 'zen.views.savePrefs'),
-    url(r'^avatar/', include('avatar.urls')),
+    #url(r'^avatar/', include('avatar.urls')),
     url(r'^tracking/', include('tracking.urls')),
     url(r'^geoip/', 'zen.views.geoip'),
     url(r'^profile/', 'zen.views.profile'),

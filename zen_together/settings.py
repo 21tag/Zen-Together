@@ -1,25 +1,27 @@
 # Django settings for zen_together project.
 import os
+from secrets import DB_NAME, DB_USER, DB_PASS, DB_PORT
+
 DEPLOY = True
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-     ('The Admin', 'master@zentogether.com'),
+     ('The Admin', 'admin@zentogether.com'),
 )
 
 MANAGERS = ADMINS
 
-if DEPLOY == True:
+if DEPLOY:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
             #'ENGINE': 'postgresql_psycopg2_persistent',
-            'NAME': '',                      # Or path to database file if using sqlite3.
-            'USER': '',                      # Not used with sqlite3.
-            'PASSWORD':'',                  # Not used with sqlite3.
+            'NAME': DB_NAME,                      # Or path to database file if using sqlite3.
+            'USER': DB_USER,                      # Not used with sqlite3.
+            'PASSWORD': DB_PASS,                  # Not used with sqlite3.
             'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+            'PORT': DB_PORT,                      # Set to empty string for default. Not used with sqlite3.
             'OPTIONS': {'autocommit' : True }
         }
     }
@@ -28,14 +30,20 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
             #'ENGINE': 'postgresql_psycopg2_persistent',
-            'NAME': '',                      # Or path to database file if using sqlite3.
+            'NAME': 'zen.db',                      # Or path to database file if using sqlite3.
             'USER': '',                      # Not used with sqlite3.
             'PASSWORD':'',                  # Not used with sqlite3.
             'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
             'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-
+            'OPTIONS': ''
         }
     }
+
+# GEOIP Settings
+if DEPLOY:
+    GEOIP_PATH = '/home/dbro/geoip'
+else:
+    GEOIP_PATH = '/home/dbro/geoip/'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -62,7 +70,8 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+#MEDIA_ROOT = '/home/dbro/django/zen-together2/zen_together/uploads/'
+MEDIA_ROOT = '/home/dbro/prod/uploads/'
 #Change this for deploymen
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -74,17 +83,17 @@ MEDIA_URL = '/uploads/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = '/home/dbro/static/zt/'
 #Change this for deployment
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://zentogether.com/static/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = '/static/admin/'
+ADMIN_MEDIA_PREFIX = 'http://zentogether.com/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -104,7 +113,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = ''
+SECRET_KEY = 'b1-yu3hi7ge!m)-9&q&5#3i^9fx-76$s1$o%%swxm%7k*j6$4d'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -178,19 +187,9 @@ AVATAR_STORAGE_DIR = 'uploads/avatars'
 
 AVATAR_URL = AVATAR_STORAGE_DIR
 
-LOGIN_REDIRECT_URL = ('/accounts/login/')
+LOGIN_REDIRECT_URL = ('/profile/')
 
 AUTH_PROFILE_MODULE = 'zen.UserProfile'
-
-GOOGLE_MAPS_KEY = ''
-
-TRACKING_USE_GEOIP = True
-
-GEOIP_PATH = ''
-
-GEOIP_CITY = 'GeoLiteCity.dat'
-
-GEOIP_CACHE_TYPE = 4
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -214,10 +213,9 @@ LOGGING = {
         },
     }
 }
-EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
-DEFAULT_FROM_EMAIL = ""
+
 EMAIL_USE_TLS = True
-EMAIL_HOST = ''
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_PORT = 465
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mobilemileagetrckr@gmail.com'
+EMAIL_HOST_PASSWORD = 'p4ssword!'
+EMAIL_PORT = 587

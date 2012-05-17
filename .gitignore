@@ -26,6 +26,7 @@
 *.log
 *.sql
 *.sqlite
+*.db
 
 # OS generated files #
 ######################
@@ -37,4 +38,4 @@ Thumbs.db
 # Project settings file #
 #########################
 
-./zen_together/settings.py
+zen_together/secrets.py

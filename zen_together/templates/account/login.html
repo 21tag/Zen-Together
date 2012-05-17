@@ -63,7 +63,7 @@ function save() {
     {% if request.user.first_name %} 
     <h2 class="alignCenter">Welcome {{ first_name }}! <a href="{% url account_logout %}">Log out.</a></h2>
     {% else %}
-    <h2 class="alignCenter">Welcome {{ user_display }}! <a href="{% url account_logout %}">Log out.</a></h2>
+    <h2 class="alignCenter">Welcome {{ request.user.username }}! <a href="{% url account_logout %}">Log out.</a></h2>
     {% endif %}
     <br/>
     <div style="margin-left:auto; margin-right:auto; text-align:center;">

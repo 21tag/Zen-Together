@@ -6,9 +6,10 @@ from django.http import HttpResponse
 from models import TotalZen
 import facebook
 from allauth.facebook.models import FacebookApp, FacebookAccount, FacebookAccessToken
+#from allauth.facebook.models import FacebookApp, FacebookAccount
 from tracking.models import Visitor
-from avatar.models import Avatar
-from django.contrib.gis.utils import GeoIP
+#from avatar.models import Avatar
+from django.contrib.gis.geoip import GeoIP
 import settings
 import ast
 import datetime
@@ -76,6 +77,7 @@ def start(request):
     zenFriends = 0
 
     #Make sure fb cookie matches id of current user
+    
     fbToken = FacebookAccessToken.objects.get(app=fbapp, account=djangoUser)
     try:
         g = facebook.GraphAPI(fbToken.access_token)
@@ -83,7 +85,7 @@ def start(request):
     except:
         tempdic["error"] = "Your Facebook session has expired. Please <a href=\"/accounts/logout/\">sign out</a> and try again."
         return render_to_response('start.html', tempdic, context_instance=RequestContext(request))
-        
+    
     fb_friends = g.get_connections(djangoUser.social_id, "friends")
     #Find a way to query friends using this app directly from FB
     #currentVisitors = Visitor.objects.active().filter(url=request.path)
@@ -121,7 +123,8 @@ def start(request):
                 if ip_dat['region'] not in st_list:
                     st_list.append(ip_dat['region'])
         except Exception, e:
-            print 'visitor geoip error: ' + e
+            print 'visitor geoip error: ' + str(e)
+            ip_dat = {}
             ip_dat['country_code'] = 'NA'
             ip_dat['region'] = 'NA'
         #If the stored fb acct for this visitor is in current uers fb friend list, pluck 'em'
@@ -296,6 +299,7 @@ def complete(request):
 
         try:
             if request.user.get_profile().fbStream:
+                ''' DEBUG
                 djangoUser = FacebookAccount.objects.get(user=request.user.pk)
                 fbAccessToken = FacebookAccessToken.objects.get(account=request.user.pk)
                 post_data = [('message','I just enjoyed '+str(time)+' minutes of zen and so can you.'),
@@ -307,6 +311,8 @@ def complete(request):
                 #print post_data
                 result = urllib2.urlopen('https://graph.facebook.com/'+str(djangoUser.social_id)+'/feed', urllib.urlencode(post_data))
                 print "fbPost success"
+                '''
+                print 'fbPost disabled'
         except Exception, e:
             print "fbPost error: " + str(e)
             pass
@@ -374,6 +380,15 @@ def savePrefs(request):
 def profile(request):
     tempdic = {}
     profile = request.user.get_profile()
+
+    # Credit account with meditation time if cookie set
+    # The idea here is that allauth will redirect to /prorfile after signup/login
+    # So a user would complete meditation (with cookie set by meditation view), login
+    # as prompted at meditation end, be redirected to profile (HERE)
+    if "time" in request.COOKIES:
+        profile.addKarmaPts(request.COOKIES["time"])
+        profile.save()
+
     #print "prof: " + str(profile.id)
     meditations = list(profile.meditations.all())
     meditations = meditations[len(meditations)-10:]
@@ -401,15 +416,15 @@ def profile(request):
     try:
         tempdic["fbStreamPerm"] = fbStreamPerm
         #tempdic["social"] = social
-        tempdic["fbStream"] = request.user.get_profile().fbStream
+        tempdic["fbStream"] = profile.fbStream
         tempdic["first_name"] = request.user.first_name
         tempdic["last_name"] = request.user.last_name
-        tempdic["karmaPts"] = request.user.get_profile().karmaPts
-        tempdic["numZen"] = request.user.get_profile().numZen
+        tempdic["karmaPts"] = profile.karmaPts
+        tempdic["numZen"] = profile.numZen
         #2011-12-02 17:17:47.452637     
         #%Y-%m-%d %H:%M:%f'
         #time is datetime obj
-        lastZenDT = request.user.get_profile().lastZen
+        lastZenDT = profile.lastZen
         if lastZenDT == datetime.datetime.strptime("20 Apr 00", "%d %b %y"):
             tempdic["hasZenned"] = False
         else:
@@ -431,8 +446,10 @@ def profile(request):
         tempdic["lastZenTime"] = None
         tempdic["hasZenned"] = None
 
-    return render_to_response('profile.html',tempdic,context_instance=RequestContext(request))
-
+    response = render_to_response('profile.html',tempdic,context_instance=RequestContext(request))
+    # Delete stored time cookie. If it doesn't exist, this fails silently
+    response.delete_cookie("time")
+    return response
 def geoip(request):
     g = GeoIP()
     #ip_dat = g.city(request.META['HTTP_X_REAL_IP'])
