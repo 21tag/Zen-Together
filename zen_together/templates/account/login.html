@@ -61,7 +61,7 @@ function save() {
     <script>loginComplete();</script>
     {% user_display user as user_display %}
     {% if request.user.first_name %} 
-    <h2 class="alignCenter">Welcome {{ first_name }}! <a href="{% url account_logout %}">Log out.</a></h2>
+    <h2 class="alignCenter">Welcome {{ request.user.first_name }}! <a href="{% url account_logout %}">Log out.</a></h2>
     {% else %}
     <h2 class="alignCenter">Welcome {{ request.user.username }}! <a href="{% url account_logout %}">Log out.</a></h2>
     {% endif %}
