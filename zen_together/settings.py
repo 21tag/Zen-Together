@@ -2,7 +2,7 @@
 import os
 from secrets import DB_NAME, DB_USER, DB_PASS, DB_PORT, EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_PORT
 
-DEPLOY = True
+DEPLOY = False
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -155,14 +155,12 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 
     #allauth pals:
-    'emailconfirmation',
-    'uni_form',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     #'allauth.twitter',
     #'allauth.openid',
-    'allauth.facebook',
+    'allauth.socialaccount.providers.facebook',
     'zen',
     'tracking',
     #'avatar',
@@ -172,6 +170,7 @@ INSTALLED_APPS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     "allauth.context_processors.allauth",
     "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
     "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.request", #Makes request accessible to templates
     "django.core.context_processors.static",

@@ -6,7 +6,8 @@ from django.http import HttpResponse
 from models import TotalZen
 import facebook
 from allauth.facebook.models import FacebookApp, FacebookAccount, FacebookAccessToken
-#from allauth.facebook.models import FacebookApp, FacebookAccount
+# Ben - These modules have moved / changed to 
+# allauth.socialaccount.providers.facebook.provider
 from tracking.models import Visitor
 #from avatar.models import Avatar
 from django.contrib.gis.geoip import GeoIP

@@ -6,10 +6,8 @@ Note that some libraries are not required, but involved in planned future develo
 Django
 PIL
 django-allauth
-django-email-confirmation
 django-ses
 django-smtp-ssl
-django-uni-form
 httplib2
 oauth2
 psycopg2 # for postgreSQL
