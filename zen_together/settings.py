@@ -41,9 +41,9 @@ else:
 
 # GEOIP Settings
 if DEPLOY:
-    GEOIP_PATH = '/home/dbro/geoip'
+    GEOIP_PATH = '/Users/bguo/geoip'
 else:
-    GEOIP_PATH = '/home/dbro/geoip/'
+    GEOIP_PATH = '/Users/bguo/geoip'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -164,11 +164,14 @@ INSTALLED_APPS = (
     'zen',
     'tracking',
     #'avatar',
+
+    'uni_form', #bguo
+
     
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    "allauth.context_processors.allauth",
+    # "allauth.context_processors.allauth", #bguo this has been removed
     "allauth.account.context_processors.account",
     "allauth.socialaccount.context_processors.socialaccount",
     "django.contrib.auth.context_processors.auth",
