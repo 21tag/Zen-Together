@@ -88,12 +88,18 @@ STATIC_ROOT = '/home/dbro/static/zt/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = 'http://zentogether.com/static/'
+if DEPLOY:
+    STATIC_URL = 'http://zentogether.com/static/'
+else:
+    STATIC_URL = 'http://127.0.0.1:8000/static/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
+# if DEPLOY:
 ADMIN_MEDIA_PREFIX = 'http://zentogether.com/static/admin/'
+# else:
+#     ADMIN_MEDIA_PREFIX = 'http://127.0.0.1:8000/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (

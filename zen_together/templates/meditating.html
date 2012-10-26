@@ -21,16 +21,17 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css" type="text/css" />
     <!--[if lte IE 7]><link rel="stylesheet" href="css/ie.css" type="text/css" /><![endif]-->
     
-    
     <link rel="icon" href="{{ STATIC_URL }}favicon.ico" type="image/x-icon" />
     <link rel="icon" href="{{ STATIC_URL }}favicon.png" type="image/png" />
-    {% load allauth_tags %}
+    {% load socialaccount %} <!-- was load allauth_tags -->
+    {% load account %}
     {% load tracking_tags %}
     {% visitors_on_site as visitors %}
     {% visitors_on_page as same_page %}
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.countdown.js"></script>
+
 
     <audio  id="start_gong" preload="auto" autobuffer volume:.5>
     <source src="{{STATIC_URL}}audio/start_gong.ogg" />
@@ -190,10 +191,11 @@
                     $('#zenMessage').animate({opacity:1}, 500);
                 });
             $.get("/zen/complete/", {"time" : {{ time }}  } );
-        {% else %}
+        {% endif %}
+        {% if not request.user.is_authenticated %}
              $('#zenMessage').animate({opacity:0}, 500, 
                 function() {
-                    $('#zenMessage').html("Have a"+adj+" day. <br/><br/>Login to claim your Karma Points: <a title=\"Facebook\" class=\"socialaccount_provider facebook\" onclick=\"loginInit();\"href=\"{% facebook_login_url %}\"><img src=\"{{ STATIC_URL }}images/btn-fbconnect.png\" alt=\"\" class=\"divider\"/></a>");
+                    {#$('#zenMessage').html("Have a"+adj+" day. <br/><br/>Login to claim your Karma Points: <a title=\"Facebook\" class=\"socialaccount_provider facebook\" onclick=\"loginInit();\"href=\"{% facebook_login_url %}\"><img src=\"{{ STATIC_URL }}images/btn-fbconnect.png\" alt=\"\" class=\"divider\"/></a>"); #}
                     $('#zenMessage').animate({opacity:1}, 500);
                 });
         {% endif %}

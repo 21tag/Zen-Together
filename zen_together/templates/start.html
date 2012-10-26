@@ -12,7 +12,9 @@ function go(time){
     }
     else
         mpq.track("Meditate "+String(time)+" no sound");
-    window.location = "http://www.zentogether.com/zen/go/"+String(time)+"?s="+sound;
+    //    window.location = "http://www.zentogether.com/zen/go/"+String(time)+"?s="+sound;
+    /* bguo - debugging sound */
+        window.location = "http://127.0.0.1:8000/zen/go/"+String(time)+"?s="+sound;
 }
 
 function loginInit(){
@@ -101,7 +103,7 @@ function like(){
                 <p style="text-align: center">Login with Facebook to zen with friends.  By meditating together, you will all earn bonus karma points!</p>
                 
                 <a href="{% provider_login_url "facebook" method="oauth2" %}"><img src="{{ STATIC_URL }}images/btn-fbconnect.png" alt="" class="divider"/></a>
-                
+
                 <br/>
                 {% endif %}
             {% endif %}
