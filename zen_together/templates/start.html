@@ -90,14 +90,21 @@ function like(){
             <br/>
              <div style="text-align:center;">
             {% if request.user.is_authenticated and not social %}
+
             <p style="text-align: center">Login with Facebook to zen with friends.  By meditating together, you will all earn bonus karma points!</p>
-            <a title="Facebook" class="socialaccount_provider facebook" href="{% provider_login_url "facebook" method="oauth2" %}><img src="{{ STATIC_URL }}images/btn-fbconnect.png" alt="" class="divider"/></a>
-            {% else %}{% if request.user.is_authenticated and social %}
-            <p style="text-align: center">Use Facebook to zen with friends.  By meditating together, you will all earn extra karma points!</p>
+            <a href="{% provider_login_url "facebook" method="oauth2" %}"><img src="{{ STATIC_URL }}images/btn-fbconnect.png" alt="" class="divider"/></a>
+
             {% else %}
-            <p style="text-align: center">Login with Facebook to zen with friends.  By meditating together, you will all earn bonus karma points!</p>
-            <a title="Facebook" class="socialaccount_provider facebook" onclick="loginInit();" href="{% provider_login_url "facebook" method="oauth2" %}"><img src="{{ STATIC_URL }}images/btn-fbconnect.png" alt="" class="divider"/></a><br/>
-            {% endif %}{% endif %}
+                {% if request.user.is_authenticated and social %}
+                <p style="text-align: center">Use Facebook to zen with friends.  By meditating together, you will all earn extra karma points!</p>
+                {% else %}
+                <p style="text-align: center">Login with Facebook to zen with friends.  By meditating together, you will all earn bonus karma points!</p>
+                
+                <a href="{% provider_login_url "facebook" method="oauth2" %}"><img src="{{ STATIC_URL }}images/btn-fbconnect.png" alt="" class="divider"/></a>
+                
+                <br/>
+                {% endif %}
+            {% endif %}
             </div>
         {% endif %}
         

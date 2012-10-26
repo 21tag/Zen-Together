@@ -166,7 +166,7 @@ INSTALLED_APPS = (
     #'avatar',
 
     'uni_form', #bguo
-
+    'south',
     
 )
 
