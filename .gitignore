@@ -39,3 +39,8 @@ Thumbs.db
 #########################
 
 zen_together/secrets.py
+
+# Sublime #
+###########
+*.sublime-project
+*.sublime-workspace
