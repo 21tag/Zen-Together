@@ -19,22 +19,20 @@ To run ZenTogether locally, you'll need to:
 
 Install PostgreSQL
 -----
-Get the binary package here:
 http://www.postgresql.org/download/
 
 Install psycopg2
 ----
-get the archive from:
 http://pypi.python.org/pypi/psycopg2
 
 Install Django
 ---
-$ pip install Django
+	$ pip install Django
 
 To verify: at the Python prompt
->>> import django
->>> print django.get_version()
-1.4
+	>>> import django
+	>>> print django.get_version()
+	1.4
 
 Install required modules:
 ----
@@ -49,10 +47,10 @@ Install GeoIP:
 ----
 1) Get the GEOIP C library:
 http://www.maxmind.com/download/geoip/api/c/
-$ ./configure
-$ make
-$ make check
-$ make install
+	$ ./configure
+	$ make
+	$ make check
+	$ make install
 
 2) Get the GEOIP Python API:
 http://www.maxmind.com/download/geoip/api/python/
@@ -66,11 +64,11 @@ Change GEOIP_PATH in settings.py
 Almost there:
 ---
 Create database tables:
-$ python manage.py syncdb
+	$ python manage.py syncdb
 
 Load initial data fixtures:
-$ python manage.py loaddata zen_fixtures.json
+	$ python manage.py loaddata zen_fixtures.json
 
 Run:
-$ python manage.py runserver
+	$ python manage.py runserver
 
