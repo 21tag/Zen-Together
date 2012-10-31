@@ -1,17 +1,12 @@
-{% load allauth_tags %}
-<!-- These snippets look out of date. I updated facebook's -->
+{% load socialaccount %} 
+<!-- These snippets look out of date! -->
 
 {% if allauth.openid_enabled %}
-<a title="Google" class="socialaccount_provider google" href="{% openid_login_url openid="https://www.google.com/accounts/o8/id" %}">Google</a>
+<a href="{% provider_login_url "openid" openid="https://www.google.com/accounts/o8/id" next="/success/url/" %}">Google</a>
 {% endif %}
 {% if allauth.twitter_enabled %}
-<a title="Twitter" class="socialaccount_provider twitter" href="{% twitter_login_url %}">Twitter</a>
+<a href="{% provider_login_url "twitter" %}">Twitter</a>
 {% endif %}
 {% if allauth.facebook_enabled %}
 <a href="{% provider_login_url "facebook" method="oauth2" %}"><img src="{{ STATIC_URL }}images/btn-fbconnect.png" alt="" class="divider"/></a>
-{% endif %}
-{% if allauth.openid_enabled %}
-<a title="Yahoo" class="socialaccount_provider yahoo" href="{% openid_login_url openid="http://me.yahoo.com" %}">Yahoo</a>
-<a title="OpenID" class="socialaccount_provider openid" href="{% openid_login_url %}">OpenID</a>
-<a title="Hyves" class="socialaccount_provider hyves" href="{% openid_login_url openid="http://hyves.nl" %}">Hyves</a>
 {% endif %}

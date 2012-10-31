@@ -41,7 +41,7 @@ else:
 
 # GEOIP Settings
 if DEPLOY:
-    GEOIP_PATH = '/Users/bguo/geoip'
+    GEOIP_PATH = '/home/dbro/geoip/'
 else:
     GEOIP_PATH = '/Users/bguo/geoip'
 
@@ -72,7 +72,7 @@ USE_L10N = True
 # Example: "/home/media/media.lawrence.com/media/"
 #MEDIA_ROOT = '/home/dbro/django/zen-together2/zen_together/uploads/'
 MEDIA_ROOT = '/home/dbro/prod/uploads/'
-#Change this for deploymen
+#Change this for deployment
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -88,10 +88,13 @@ STATIC_ROOT = '/home/dbro/static/zt/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
+STATIC_URL = 'http://zentogether.com/static/'
+
+# Base url
 if DEPLOY:
-    STATIC_URL = 'http://zentogether.com/static/'
+    BASE_URL = 'http://zentogether.com/'
 else:
-    STATIC_URL = 'http://127.0.0.1:8000/static/'
+    BASE_URL = 'http://127.0.0.1:8000/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.

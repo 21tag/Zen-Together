@@ -6,9 +6,7 @@ function go(time){
     var sound = "0"
     if(document.getElementById("soundCheck").checked == true)
         sound = "1"
-    //window.location = "http://www.zentogether.com/zen/go/"+String(time)+"?s="+sound;
-    /* bguo - debugging sound */
-    window.location = "http://127.0.0.1:8000/zen/go/"+String(time)+"?s="+sound;
+    window.location = "{{ BASE_URL }}/zen/go/"+String(time)+"?s="+sound;
 }
 </script>
 {% endblock %}

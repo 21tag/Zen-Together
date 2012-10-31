@@ -399,7 +399,7 @@ def profile(request):
     tempdic["meditations"] = meditations
     try:
         djangoUser = FacebookAccount.objects.get(user=request.user.pk)
-        #social = True
+        social = True # this was #
         fbAccessToken = FacebookAccessToken.objects.get(account=request.user.pk)
         #print 'https://graph.facebook.com/'+str(djangoUser.social_id)+'/permissions?access_token='+str(fbAccessToken)
         result = urllib2.urlopen('https://graph.facebook.com/'+str(djangoUser.social_id)+'/permissions?access_token='+str(fbAccessToken))
@@ -413,8 +413,8 @@ def profile(request):
     except Exception, e:
         fbStreamPerm = 0
         print e
-        #social = False
-    #print social
+        social = False # this was #
+    # print social
     try:
         tempdic["fbStreamPerm"] = fbStreamPerm
         #tempdic["social"] = social
